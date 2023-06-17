@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django HTML Testing</title>
+</head>
+<body>
+
+    {% for x in fruits%}
+    <p> {{ x }} </p>
+    {% endfor %}  
+
+
+    
+    <h1>Hello {{ firstname }}, how are you? </h1>
+
+
+
+    {% with lastname="Tobias" %}
+    <h1>Your lastname is {{ lastname }}?</h1>
+    {% endwith %}
+
+
+
+    <p>In views.py you can see what the fruits variable looks like.</p>
+    <p>In template.html you can see how to use the variable.</p>
+
+
+
+    <h3>Member list are: </h3>
+    <ul>
+        {% for member in mymembers %}
+        <li> {{ member.firstname }} {{ member.lastname }} </li>
+        {% endfor %}
+    </ul>
+
+
+
+    {% if greeting == 1 %}
+    <h1>Hello</h1>
+    {% else %}
+    <h1>Bye</h1>
+    {% endif %}
+
+    <p>In views.py you can see what the greeting variable looks like.</p>
+
+    {% lorem 50 w %} <!--50 words --> 
+
+    {% lorem 5 p %}  <!--5 paragraphs -->
+
+    {% lorem 50 %}  <!--50 block by default -->
+
+  <ul>
+    {% for x in fruits %}
+    <li style='
+    color:{% cycle 'red' 'green' 'blue' 'magenta' as mycolor %};
+    background:{% cycle 'grey' 'beige' 'coral' 'brown' as mybg %}'>
+       <h1>
+         {{ x }}
+       </h1>
+    </li>
+    {% if x == "Banana" %}
+    {% resetcycle mybg %}
+    {% endif %}
+    {% endfor %}
+  </ul>
+
+  <h1>{% now "Y-m-d G:i:s" %}</h1>
+
+{% regroup cars by brand as newlist %}
+
+{{ newlist }}
+
+{% for x in newlist %}
+<h1> {{ x.grouper }} </h1>
+{% for y in x.list %}
+<p> {{ y.model }}: {{ y.year }} </p>
+{% endfor %}
+{% endfor %}
+
+
+
+{% if greeting == 1 %}
+<h1>Hello</h1>
+{% elif greeting == 2 %}
+<h1>Welcome</h1>
+{% esle %}
+<h1>Goodbye</h1>
+{% endif %}
+    
+</body>
+</html>
+
